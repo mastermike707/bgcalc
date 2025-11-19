@@ -15,7 +15,7 @@ export default function Skill({ skillName, modifier, proficiency, setProficiency
             <td>{skillName}</td>
             <td>{modifier}</td>
             <td>{proficiency}</td>
-            <td>{setProficiency && <button onClick={() => setProficiency(skillName)} />}</td>
+            <td>{setProficiency && <button onClick={() => setProficiency(skillName, )} />}</td>
             <td>{modifier+proficiency}</td>
         </tr>
     );

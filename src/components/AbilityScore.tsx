@@ -1,12 +1,12 @@
 
 type AbilityScoreProps = {
-    statName: string
-    displayName: string
-    statValue: number
-    bonus: number
-    pointsUsed: number
-    cycleBonus: (statName: string) => void
-    increase: (statName: string) => void
+    statName: string,
+    displayName: string,
+    statValue: number,
+    bonus: number,
+    pointsUsed: number,
+    cycleBonus: (statName: string) => void,
+    increase: (statName: string) => void,
     decrease: (statName: string) => void
 }
 

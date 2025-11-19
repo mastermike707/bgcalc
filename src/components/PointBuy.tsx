@@ -3,17 +3,13 @@ import statChangeReducer, { maxPoints } from "../hooks/statChangeReducer";
 import { statType } from "../types/types";
 import AbilityScore from "./AbilityScore";
 
+type PointBuyCalculatorProps = {
+    statsProp: statType[],
+    setStats: (value: statType[]) => void
+}
 
-const initalStats: statType[] = [
-    { name: "str", displayName: "Strength", value: 8, bonus: 2, points: 0 },
-    { name: "dex", displayName: "Dexterity", value: 8, bonus: 1, points: 0 },
-    { name: "con", displayName: "Constitution", value: 8, bonus: 0, points: 0 },
-    { name: "int", displayName: "Intelligence", value: 8, bonus: 0, points: 0 },
-    { name: "wis", displayName: "Wisdom", value: 8, bonus: 0, points: 0 },
-    { name: "cha", displayName: "Charisma", value: 8, bonus: 0, points: 0 }
-]
-export function PointBuyCalculator() {
-    const [stats, changeStat] = useReducer(statChangeReducer, initalStats);
+export function PointBuyCalculator({statsProp, setStats} : PointBuyCalculatorProps) {
+    const [stats, changeStat] = useReducer(statChangeReducer, statsProp);
     const [bonus2, setBonus2] = useState("str");
     const [bonus1, setBonus1] = useState("dex")
     let totalPoints = 0
@@ -26,6 +22,7 @@ export function PointBuyCalculator() {
             type: "increase",
             statName: statName
         });
+        setStats(stats);
     }
 
     function handleDecrease(statName: string) {
@@ -33,6 +30,7 @@ export function PointBuyCalculator() {
             type: "decrease",
             statName: statName
         });
+        setStats(stats);
     }
 
     function cycleBonus(statName:string){
@@ -41,6 +39,7 @@ export function PointBuyCalculator() {
             setBonus2(statName)
             setBonus1(temp)
         }
+        setStats(stats);
     }
 
     return <div>

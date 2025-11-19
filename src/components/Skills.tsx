@@ -2,11 +2,11 @@ import { skillType } from "../types/types";
 import Skill from "./Skill"
 
 type SkillsProps = {
-    skills: skillType[]
-
+    skills: {[skillName: string]: skillType}
+    setProficiency: (key:string, proficiency: number) => void
 }
 
-export default function Skills({skills, stats}:SkillsProps){
+export default function Skills({skills, setProficiency}:SkillsProps){
     
     
 
@@ -19,8 +19,8 @@ export default function Skills({skills, stats}:SkillsProps){
                 <td>Total</td>
             </tr>
         </thead>
-        <tbody>{skills.map(skill:skillType=>{
-            <Skill {...skill} />
+        <tbody>{skills.map((skill:skillType)=>{
+            <Skill {...skill} setProficiency={setProficiency} />
         })}</tbody>
     </table>
 }
